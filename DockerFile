@@ -1,0 +1,11 @@
+FROM shashankpatil721/cicd_repo
+
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+RUN python train.py
+
+CMD ["python", "test.py"]

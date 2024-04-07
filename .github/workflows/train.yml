@@ -1,0 +1,20 @@
+name: Train
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t shashankpatil721/cicd_repo:$GITHUB_SHA .
+
+      - name: Push Docker image to registry
+        run: |
+          docker login -u your_registry_username -p your_registry_password
+          docker push shashankpatil721/cicd_repo:$GITHUB_SHA
