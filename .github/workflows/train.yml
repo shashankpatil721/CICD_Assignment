@@ -16,5 +16,5 @@ jobs:
 
       - name: Push Docker image to registry
         run: |
-          docker login -u your_registry_username -p your_registry_password
+          docker login -u shashankpatil721 -p 
           docker push shashankpatil721/cicd_repo:$GITHUB_SHA
