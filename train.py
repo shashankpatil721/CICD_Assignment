@@ -1,17 +1,18 @@
-# Introduce errors to simulate both actions failing
+# Introduce an error to simulate training failure
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import pickle
 import numpy as np
 
-# Introduce an error by providing a non-existent file path
+# Introduce an error by attempting to fit a model without splitting the data
 try:
-    df = pd.read_csv("data/non_existent_file.csv")
+    df = pd.read_csv("data/train.csv")
     X = df.drop(columns=['Disease']).to_numpy()
     y = df['Disease'].to_numpy()
     labels = np.sort(np.unique(y))
     y = np.array([np.where(labels == x) for x in y]).flatten()
 
+    # Introduce an error by attempting to fit the model without splitting the data
     model = LogisticRegression().fit(X, y)
 
     with open("model.pkl", 'wb') as f:
